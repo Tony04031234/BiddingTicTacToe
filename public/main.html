@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <link rel="shortcut icon" href="favicon.ico">
+      <title>Bidding Tic Tac Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
+      <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+      <!--<script src="javascripts/Square.js" charset="UTF-8"></script>
+      <script src="javascripts/Game.js" charset="UTF-8"></script>-->
+      <script defer src="javascripts/myhomepage.js"></script>
+  </head>
+
+  <body>
+
+    <div id="ui">
+
+        <div class="outer_warraper">
+
+            <div class="player1" >
+
+                <div class="inner_warapper">
+
+                    <div id="title">
+                        <h1> Player 1 X</h1>
+                    </div>
+
+                    <div id="token">
+
+                        <h2 > Token: {{token_player1}}</h2>
+
+                    </div>
+
+                    <div id="bid" v-if="start== false">
+
+                        <label for="bet1">Your Bet:</label>
+                        <input type="text" id="bet1" name="bet1" v-model='player1_bid'>
+                        <button id="bet_btn" v-on:click="bidding_player1()">Bid</button>
+                        <button id="bet_btn" v-on:click="stop_bidding_player1()">Stop</button>
+
+                    </div>
+
+                    <p>{{newfeed1}}</p>
+
+                </div>
+
+            </div>
+
+            <div class="player2" >
+
+                <div class="inner_warapper">
+
+                    <div id="title">
+                        <h1> Player 2 O</h1>
+                    </div>
+
+                    <div id="token">
+
+                        <h2> Token: {{token_player2}}</h2>
+
+                    </div>
+
+                    <div id="bid" v-if="start== false">
+
+                        <label for="bet2">Your Bet:</label>
+                        <input type="text" id="bet2" name="bet2"  v-model='player2_bid' onfocus="this.value=''" value="your bet ...">
+                        <button id="bet_btn" v-on:click="bidding_player2()"> Bid</button>
+                        <button id="bet_btn" v-on:click="stop_bidding_player2()"> Stop</button>
+
+                    </div>
+
+                    <p>{{newfeed2}}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="board" >
+
+            <div class="end" v-if="start==false" >
+
+                <button id='btn'  v-on:click="end_game()"> End Game</button>
+
+            </div>
+
+            <div class="start" v-if="start== true">
+
+                <label for="input_token">Set The token:</label>
+                <input type="text" id="input_token" name="input_token" v-model="set_token">
+                <button id='btn' v-on:click="start_game()">Start Game</button>
+
+            </div>
+
+             <div id = "round">Round:{{round}}</div>
+
+             <div id="game-view">
+
+                <div id="game-view-info-1">
+                    {{ infoMessage }}
+                </div>
+
+                <div id="game-view-squares">
+
+                    <div
+
+                        v-for="(square, i) in activeGame.squares"
+                        v-on:click="activeGame.makeMove(i)"
+                        v-bind:class="{highlighted: square.isHighlighted}"
+                        class="game-view-square">
+                        {{ square.value }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="game-view-info-2">
+                {{ infoMessage_bidding_table}}
+            </div>
+
+
+            <div id="game-view-player">
+
+                <div id="bidding-token-1" >
+
+                    <p > Player 1: </p>
+                    <p> {{bid1}}</p>
+
+                </div>
+
+
+                <div id="bidding-token-2" style="float:right;">
+
+                    <p >Player 2:</p>
+                    <p >{{bid2}}</p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+    </script>
+
+  </body>
+
+</html>
+
+
+
+<!--
+                <script type="text/javascript">
+
+            var activeGame = new Game();
+
+            var gameVue = new Vue({
+
+              el:'#game-view',
+
+              data:activeGame,
+
+              computed: {
+                  infoMessage: function(){
+                      if(this.inProgress){
+                          return 'It is ' + this.currentTurn + '\'s turn!';
+                      }
+
+                      if(this.winner){
+                          return this.winner + ' wins!';
+                      }
+
+                      if(!this.winner && !this.inProgress){
+                          return 'It was a draw!';
+                      }
+                  }
+              }
+
+            });
+
+      </script>
+
+
+             <div class="inner-board">
+
+                <div class="row" id="row1">
+                    <div class="top left square" id="squareA" v-on:click="secure_spot()" style="text-align: center;">
+                        <p id="X" style="font-size: 50px;">{{spot_X_O}}</p>
+                    </div>
+                    <div class="top middle square" id="squareB" ></div>
+                    <div class="top right square" id="squareC" ></div>
+                </div>
+
+
+                <div class="row" id="row2">
+                    <div class="middle left square" id="squareD" ></div>
+                    <div class="middle center square" id="squareE"></div>
+                    <div class="middle right square" id="squareF"></div>
+                </div>
+
+                <div class="row" id="row3">
+                    <div class="bottom left square" id="squareG"></div>
+                    <div class="bottom middle square" id="squareH"></div>
+                    <div class="bottom right square" id="squareI"></div>
+                </div>
+
+            </div>
+
+
+
+
+            <table>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+-->

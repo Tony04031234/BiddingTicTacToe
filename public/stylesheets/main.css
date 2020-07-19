@@ -1,0 +1,186 @@
+ html{
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+body{
+    width:100%;
+    height:100%;
+    margin: 0;
+	font-family: 'Roboto';
+	font-size: 17px;
+}
+
+#ui{
+    display:grid;
+    grid-column-gap: 10px;
+	grid-template-columns:30% 70%;
+	width:100%;
+	height:100%;
+	object-fit: cover;
+	overflow:hidden;
+
+}
+
+.outer_warraper{
+    display:grid;
+    grid-row-gap:10px;
+	grid-template-rows:50% 50%;
+}
+
+.player1{
+    background-color:yellow;
+    color:black;
+    text-align: center;
+
+}
+
+.inner_warapper{
+    margin-top:25%;
+}
+
+.player2{
+    background-color: green;
+    color:black;
+    text-align: center;
+}
+
+/*
+.board{
+    background-color: white;
+    justify-content: center;
+}
+*/
+input[type=text]{
+    width:15%;
+}
+
+#input_token{
+    width:10%;
+}
+
+label{
+    font-weight:bold;
+}
+
+/* round div */
+#round{
+    padding: 15px;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #eee;
+    width:10%;
+    margin-top:10px;
+    margin-left: 100px;
+}
+
+/* This is for the borad */
+
+#game-view{
+    width: 40%;
+    margin-top: 10px;
+    border: 1px solid #000;
+}
+
+#game-view-info-1{
+    padding: 15px;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #eee;
+
+}
+
+#game-view-info-2{
+    padding: 15px;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #eee;
+    width:30%;
+    margin-top:50px;
+    margin-left: 40px;
+}
+#game-view-player{
+    margin-top: 20px;
+    margin-left: 40px;
+    width:30%;
+    height:200px;
+    padding: 15px;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #eee;
+    display:grid;
+    grid-template-columns: 50% 50%;
+
+}
+
+#bidding-token-1{
+    font-size: 20px;
+    padding: 15px;
+    background-color: pink;
+    color:black;
+    text-align: center;
+    height: 50%;
+    width: 50%;
+    margin-top: 30px;
+    margin-left:10%;
+    float:left;
+}
+
+#bidding-token-2{
+    font-size: 20px;
+    padding: 15px;
+    background-color: pink;
+    color:black;
+    text-align: center;
+    height: 50%;
+    width: 50%;
+    margin-top: 30px;
+    margin-right:30%;
+    float: right;
+}
+
+#game-view-squares{
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.game-view-square{
+    width: 33.33%;
+    height:33.33%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing:border-box;
+
+    font-family: cursive;
+    font-size: 80px;
+    text-transform: uppercase;
+    border-radius: 15px;
+    cursor: pointer;
+    user-select: none;
+    -moz-user-select: none;
+
+}
+
+.game-view-square.highlighted{color: green}
+
+.game-view-square:hover{background-color: #eee}
+
+.game-view-square:nth-child(-n + 6) {border-bottom: 15px solid brown}
+
+.game-view-square:nth-child(3n + 1),
+.game-view-square:nth-child(3n + 2){ border-right: 15px solid brown}
